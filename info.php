@@ -17,6 +17,7 @@
 <?php
 echo 'should be tracking now';
 echo 'that has been updated from a github';
+echo 'this was added in the dev branch';
 ?>
 
 </html>
