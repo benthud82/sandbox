@@ -1,0 +1,182 @@
+{
+  "version": 1,
+  "meta": {
+    "title": "Weekend with Channing",
+    "subtitle": "Fri Oct 9 – Mon Oct 12, 2026 · Central time",
+    "timezone": "America/Chicago",
+    "startDate": "2026-10-09",
+    "dayCount": 4,
+    "dayStartHour": 6,
+    "dayEndHour": 22,
+    "people": [
+      { "id": "me", "name": "Me", "color": "#3b82f6" },
+      { "id": "channing", "name": "Channing", "color": "#f59e0b" }
+    ]
+  },
+  "events": [
+    {
+      "id": "ev-fri-noschool",
+      "date": "2026-10-09",
+      "allDay": true,
+      "start": "00:00",
+      "end": "23:59",
+      "title": "No school (L&C)",
+      "location": "",
+      "who": ["channing"],
+      "category": "info",
+      "status": "confirmed",
+      "travelMin": 0,
+      "notes": "Channing is home all day Friday."
+    },
+    {
+      "id": "ev-fri-work",
+      "date": "2026-10-09",
+      "allDay": false,
+      "start": "07:00",
+      "end": "13:30",
+      "title": "Work: Supply Chain Strategy Planning, Day 2",
+      "location": "CR Melville 3A/3B (in person)",
+      "who": ["me"],
+      "category": "work",
+      "status": "confirmed",
+      "travelMin": 0,
+      "notes": "Annual planning, day 2 of 2. Teams link available for virtual attendees."
+    },
+    {
+      "id": "ev-fri-work-close",
+      "date": "2026-10-09",
+      "allDay": false,
+      "start": "13:00",
+      "end": "14:00",
+      "title": "Work: Planning close-out (virtual)",
+      "location": "Teams",
+      "who": ["me"],
+      "category": "work",
+      "status": "confirmed",
+      "travelMin": 0,
+      "notes": "Overlaps the in-person block by 30 minutes. Can be taken from the car or home."
+    },
+    {
+      "id": "ev-fri-report",
+      "date": "2026-10-09",
+      "allDay": true,
+      "start": "00:00",
+      "end": "23:59",
+      "title": "Work task: refresh Raw Complaint Unfiltered Data report for Matt Roy",
+      "location": "",
+      "who": ["me"],
+      "category": "work",
+      "status": "needs-confirm",
+      "travelMin": 0,
+      "notes": "Refresh through prior month. Keep July 26 as the cutover date for comparison. Share with Matt before the weekend starts."
+    },
+    {
+      "id": "ev-sat-football",
+      "date": "2026-10-10",
+      "allDay": false,
+      "start": "16:30",
+      "end": "17:30",
+      "title": "Channing: Football game vs Melissa",
+      "location": "",
+      "who": ["me", "channing"],
+      "category": "sports",
+      "status": "needs-confirm",
+      "travelMin": 20,
+      "notes": "Location not on the calendar. Confirm field and arrival time (teams usually want players 45–60 min early). TYFL playoffs are single elimination; check whether a follow-up game is scheduled."
+    },
+    {
+      "id": "ev-mon-dawn",
+      "date": "2026-10-12",
+      "allDay": false,
+      "start": "07:00",
+      "end": "07:15",
+      "title": "Dawn Time",
+      "location": "",
+      "who": ["me"],
+      "category": "other",
+      "status": "needs-confirm",
+      "travelMin": 0,
+      "notes": "Personal calendar block with no description. Confirm what it is."
+    },
+    {
+      "id": "ev-mon-noschool",
+      "date": "2026-10-12",
+      "allDay": true,
+      "start": "00:00",
+      "end": "23:59",
+      "title": "No school (L&C, Mon–Tue)",
+      "location": "",
+      "who": ["channing"],
+      "category": "info",
+      "status": "confirmed",
+      "travelMin": 0,
+      "notes": ""
+    },
+    {
+      "id": "ev-mon-baseball",
+      "date": "2026-10-12",
+      "allDay": false,
+      "start": "17:00",
+      "end": "19:00",
+      "title": "Channing: Baseball practice",
+      "location": "",
+      "who": ["me", "channing"],
+      "category": "sports",
+      "status": "needs-confirm",
+      "travelMin": 20,
+      "notes": "Weekly Monday practice through Nov 3. Location not on the calendar."
+    }
+  ],
+  "meals": {
+    "2026-10-09": {
+      "breakfast": { "plan": "", "where": "", "time": "", "note": "Work starts 7:00am. Channing is home." },
+      "lunch":     { "plan": "", "where": "", "time": "", "note": "In meetings until ~2:00pm." },
+      "dinner":    { "plan": "", "where": "", "time": "", "note": "Wide open. First real evening of the weekend." }
+    },
+    "2026-10-10": {
+      "breakfast": { "plan": "", "where": "", "time": "", "note": "Open." },
+      "lunch":     { "plan": "", "where": "", "time": "", "note": "Keep it light and early enough before the 4:30 game." },
+      "dinner":    { "plan": "", "where": "", "time": "", "note": "Game ends 5:30. Post-game dinner out?" }
+    },
+    "2026-10-11": {
+      "breakfast": { "plan": "", "where": "", "time": "", "note": "Fully open day." },
+      "lunch":     { "plan": "", "where": "", "time": "", "note": "Fully open day." },
+      "dinner":    { "plan": "", "where": "", "time": "", "note": "Fully open day." }
+    },
+    "2026-10-12": {
+      "breakfast": { "plan": "", "where": "", "time": "", "note": "No school. Dawn Time 7:00–7:15." },
+      "lunch":     { "plan": "", "where": "", "time": "", "note": "Open." },
+      "dinner":    { "plan": "", "where": "", "time": "", "note": "Before 5:00 or after ~7:15 (baseball 5–7)." }
+    }
+  },
+  "questions": [
+    { "id": "q1", "text": "Saturday football game: where is the field, and what time does the team want Channing there?", "resolved": false, "answer": "", "linkedEvent": "ev-sat-football" },
+    { "id": "q2", "text": "Is Saturday's game a playoff game? If so, is there a follow-up game on the schedule if they win?", "resolved": false, "answer": "", "linkedEvent": "ev-sat-football" },
+    { "id": "q3", "text": "Monday baseball practice: where is it?", "resolved": false, "answer": "", "linkedEvent": "ev-mon-baseball" },
+    { "id": "q4", "text": "What is \"Dawn Time\" on Monday 7:00–7:15am?", "resolved": false, "answer": "", "linkedEvent": "ev-mon-dawn" },
+    { "id": "q5", "text": "Can the Friday complaint report refresh for Matt Roy be finished before the weekend, or does it spill into Saturday?", "resolved": false, "answer": "", "linkedEvent": "ev-fri-report" }
+  ],
+  "ideas": [
+    { "id": "i1", "title": "Pancake breakfast at home", "duration": 60, "category": "meal", "location": "Home", "notes": "Let Channing run the griddle." },
+    { "id": "i2", "title": "Throw the football / run routes", "duration": 60, "category": "activity", "location": "Backyard or park", "notes": "Light session the morning of the game. Nothing that tires him out." },
+    { "id": "i3", "title": "Batting cages before Monday practice", "duration": 60, "category": "activity", "location": "", "notes": "Warm-up before 5:00 practice." },
+    { "id": "i4", "title": "Sunday morning bike ride or hike", "duration": 120, "category": "activity", "location": "", "notes": "Sunday is fully open." },
+    { "id": "i5", "title": "Movie night", "duration": 150, "category": "activity", "location": "Home or theater", "notes": "Saturday after the game or Sunday evening." },
+    { "id": "i6", "title": "Post-game dinner out (Channing picks)", "duration": 90, "category": "meal", "location": "", "notes": "Win or lose, his choice." },
+    { "id": "i7", "title": "Grocery run for the weekend", "duration": 45, "category": "errand", "location": "", "notes": "Friday afternoon after work wraps." },
+    { "id": "i8", "title": "Wash football uniform / pack gear", "duration": 30, "category": "errand", "location": "Home", "notes": "Friday night so Saturday is calm." },
+    { "id": "i9", "title": "Board games or video games", "duration": 90, "category": "activity", "location": "Home", "notes": "Rainy-day fallback." },
+    { "id": "i10", "title": "Build or fix something together", "duration": 120, "category": "activity", "location": "Garage", "notes": "Sunday afternoon project." }
+  ],
+  "checklist": [
+    { "id": "c1", "group": "Before the weekend", "text": "Send refreshed complaint report to Matt Roy", "done": false },
+    { "id": "c2", "group": "Before the weekend", "text": "Confirm Saturday game field and arrival time with coach / team app", "done": false },
+    { "id": "c3", "group": "Before the weekend", "text": "Confirm Monday practice location", "done": false },
+    { "id": "c4", "group": "Football game day", "text": "Uniform, cleats, mouthguard, helmet", "done": false },
+    { "id": "c5", "group": "Football game day", "text": "Water bottle and snacks", "done": false },
+    { "id": "c6", "group": "Football game day", "text": "Folding chair / sunscreen for the sideline", "done": false },
+    { "id": "c7", "group": "Baseball practice", "text": "Glove, bat, helmet, cleats", "done": false },
+    { "id": "c8", "group": "Baseball practice", "text": "Water bottle", "done": false }
+  ],
+  "notes": "Channing's football practices are Thursdays 5–7pm at Frontier Park. Baseball practices are Mondays 5–7pm through Nov 3. TYFL playoffs are single elimination.\n\nLandry and Lisette are not here this weekend; their calendar items are intentionally excluded."
+}
