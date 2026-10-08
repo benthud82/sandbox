@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Weekend Planner</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8F%88%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <h1 id="planTitle">Weekend Planner</h1>
+    <div class="sub" id="planSubtitle"></div>
+  </div>
+  <div class="topbar-actions">
+    <span class="storage-pill" id="storagePill" title="Where your plan is saved">…</span>
+    <button class="btn" id="btnUndo" title="Undo (Ctrl+Z)">↶ Undo</button>
+    <button class="btn primary" id="btnAddEvent">+ Add event</button>
+    <div class="menu">
+      <button class="btn" id="btnMore">More ▾</button>
+      <div class="menu-list" id="moreMenu">
+        <button id="btnExport">Export JSON</button>
+        <button id="btnImport">Import JSON…</button>
+        <button id="btnPrint">Print / PDF</button>
+        <button id="btnTheme">Toggle dark mode</button>
+        <button id="btnReset" class="danger">Reset to original handoff</button>
+      </div>
+    </div>
+    <input type="file" id="importFile" accept="application/json" hidden>
+  </div>
+</header>
+
+<section class="nextup" id="nextUp"></section>
+
+<nav class="tabs" id="tabs">
+  <button data-tab="schedule" class="active">Schedule</button>
+  <button data-tab="meals">Meals</button>
+  <button data-tab="open">Open items <span class="count" id="openCount"></span></button>
+  <button data-tab="ideas">Ideas</button>
+  <button data-tab="notes">Notes</button>
+</nav>
+
+<main>
+  <section class="tab-panel active" id="tab-schedule">
+    <div class="toolbar">
+      <div class="seg" id="viewSeg">
+        <button data-view="grid" class="active">Grid</button>
+        <button data-view="list">List</button>
+      </div>
+      <div class="legend" id="legend"></div>
+      <div class="spacer"></div>
+      <label class="chk"><input type="checkbox" id="showFree" checked> Show open windows</label>
+      <label class="chk"><input type="checkbox" id="showWork" checked> Show work</label>
+    </div>
+    <div id="conflicts" class="conflicts"></div>
+    <div id="scheduleGrid" class="grid-view"></div>
+    <div id="scheduleList" class="list-view" hidden></div>
+  </section>
+
+  <section class="tab-panel" id="tab-meals">
+    <p class="hint">Open windows are computed from your schedule. Fill in a plan and hit <b>Put on schedule</b> to lock it in as a timed event.</p>
+    <div id="mealsGrid" class="meals-grid"></div>
+  </section>
+
+  <section class="tab-panel" id="tab-open">
+    <div class="two-col">
+      <div>
+        <h2>Questions to confirm</h2>
+        <ul id="questionList" class="q-list"></ul>
+        <form id="questionForm" class="inline-form">
+          <input type="text" id="questionInput" placeholder="Add a question…" required>
+          <button class="btn" type="submit">Add</button>
+        </form>
+      </div>
+      <div>
+        <h2>Checklist</h2>
+        <div id="checklist"></div>
+        <form id="checkForm" class="inline-form">
+          <input type="text" id="checkGroup" placeholder="Group" list="groupList">
+          <datalist id="groupList"></datalist>
+          <input type="text" id="checkInput" placeholder="Add an item…" required>
+          <button class="btn" type="submit">Add</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="tab-panel" id="tab-ideas">
+    <p class="hint">Things to do with Channing. <b>Schedule</b> drops an idea into the next open window on the day you pick.</p>
+    <div id="ideaList" class="idea-list"></div>
+    <form id="ideaForm" class="inline-form">
+      <input type="text" id="ideaTitle" placeholder="New idea…" required>
+      <input type="number" id="ideaDuration" placeholder="min" min="15" step="15" value="60" style="width:5.5em">
+      <button class="btn" type="submit">Add idea</button>
+    </form>
+  </section>
+
+  <section class="tab-panel" id="tab-notes">
+    <h2>Notes</h2>
+    <textarea id="notesArea" rows="14" placeholder="Anything else worth remembering…"></textarea>
+  </section>
+</main>
+
+<!-- Event editor -->
+<dialog id="eventDialog">
+  <form id="eventForm" method="dialog">
+    <div class="dlg-head">
+      <h2 id="eventDialogTitle">Edit event</h2>
+      <button type="button" class="icon-btn" id="btnCloseDialog" aria-label="Close">✕</button>
+    </div>
+    <input type="hidden" id="evId">
+    <label>Title <input type="text" id="evTitle" required autocomplete="off"></label>
+    <div class="row">
+      <label>Day <select id="evDate"></select></label>
+      <label class="chk-inline"><input type="checkbox" id="evAllDay"> All day</label>
+    </div>
+    <div class="row times" id="evTimesRow">
+      <label>Start <input type="time" id="evStart" step="300"></label>
+      <label>End <input type="time" id="evEnd" step="300"></label>
+      <div class="nudges">
+        <button type="button" class="btn sm" data-nudge="-15">−15m</button>
+        <button type="button" class="btn sm" data-nudge="15">+15m</button>
+        <button type="button" class="btn sm" data-nudge="60">+1h</button>
+      </div>
+    </div>
+    <label>Location <input type="text" id="evLocation" placeholder="Where do you need to be?" list="locationList" autocomplete="off"></label>
+    <datalist id="locationList"></datalist>
+    <div class="row">
+      <label>Drive time (min) <input type="number" id="evTravel" min="0" step="5" value="0"></label>
+      <div class="leave-by" id="evLeaveBy"></div>
+    </div>
+    <div class="row">
+      <fieldset class="who"><legend>Who</legend><div id="evWho"></div></fieldset>
+      <label>Category <select id="evCategory"></select></label>
+      <label>Status <select id="evStatus">
+        <option value="confirmed">Confirmed</option>
+        <option value="tentative">Tentative</option>
+        <option value="needs-confirm">Needs confirmation</option>
+      </select></label>
+    </div>
+    <label>Notes <textarea id="evNotes" rows="3"></textarea></label>
+    <div class="dlg-warn" id="evWarn"></div>
+    <div class="dlg-actions">
+      <button type="button" class="btn danger" id="btnDeleteEvent">Delete</button>
+      <button type="button" class="btn" id="btnDuplicateEvent">Duplicate</button>
+      <div class="spacer"></div>
+      <button type="button" class="btn" id="btnCancelEvent">Cancel</button>
+      <button type="submit" class="btn primary" id="btnSaveEvent">Save</button>
+    </div>
+  </form>
+</dialog>
+
+<!-- Pick a day (used by Ideas → Schedule) -->
+<dialog id="dayDialog">
+  <div class="dlg-head"><h2>Schedule on which day?</h2></div>
+  <div id="dayChoices" class="day-choices"></div>
+  <div class="dlg-actions"><div class="spacer"></div><button class="btn" id="btnCancelDay">Cancel</button></div>
+</dialog>
+
+<div id="toast" class="toast" hidden></div>
+
+<script src="app.js"></script>
+</body>
+</html>
